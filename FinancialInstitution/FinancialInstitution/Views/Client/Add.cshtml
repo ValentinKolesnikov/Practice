@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/MainLayout.cshtml"; ;
+}
+@model FinancialInstitution.Models.Client
+    <div class="action-form">
+        <h3 class="action-form__title">Форма редактирования клиента</h3>
+       
+       
+        @using (Html.BeginForm("Add", "Client", FormMethod.Post))
+        {
+            @Html.TextBox("FirstName", "", new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.FirstName) })
+            @Html.ValidationMessageFor(model => model.FirstName)
+
+            @Html.TextBox("SecondName", "", new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.SecondName) })
+            @Html.ValidationMessageFor(model => model.SecondName)
+
+            @Html.TextBox("MiddleName", "", new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.MiddleName) })
+            @Html.ValidationMessageFor(model => model.MiddleName)
+
+            @Html.TextBox("BirthDay", "", new { @class = "action-form__input birthDay-datepicker", @placeholder = Html.DisplayNameFor(m => m.BirthDay) })
+            @Html.ValidationMessageFor(model => model.BirthDay)
+
+            @Html.DropDownList("Country", new List<SelectListItem>(), "Страна", new { @class = "action-form__select", @onchange = "countrySelected()", @id = "country" })
+            @Html.ValidationMessageFor(model => model.Country)
+
+            @Html.DropDownList("City", new List<SelectListItem>(), "Город", new { @class = "action-form__select", @id = "city" })
+            @Html.ValidationMessageFor(model => model.City)
+
+            @Html.TextBox("Street", "", new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.Street) })
+            @Html.ValidationMessageFor(model => model.Street)
+
+            @Html.TextBox("PassportSeriesAndNumber", "", new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.PassportSeriesAndNumber) })
+            @Html.ValidationMessageFor(model => model.PassportSeriesAndNumber)
+
+            @Html.TextBox("CardNumber", "", new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.CardNumber) })
+            @Html.ValidationMessageFor(model => model.CardNumber)
+            
+
+            <div class="action-form__buttons">
+                <a class="action-form__btn btn-cansel" href="/client/showshort">Отмена</a>
+                <input class="action-form__btn btn-save" type="submit" name="name" value="Сохранить" />
+            </div>
+        }
+    </div>
+<script src="~/scripts/cascadeList.js"></script>
+
+

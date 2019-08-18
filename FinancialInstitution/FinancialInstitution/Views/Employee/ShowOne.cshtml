@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "~/Views/MainLayout.cshtml";
+}
+
+@model FinancialInstitution.Models.Employee
+
+<div class="main-content">
+    <table class="main-table">
+        <caption>
+            <h3 class="table__title">@Model.SecondName @Model.FirstName @Model.MiddleName</h3>
+        </caption>
+        <tr class="main-table__row main-table__row-title">
+            <td class="main-table__cell"><p class="main-table__text">Дата рождения</p></td>
+            <td class="main-table__cell"><p class="main-table__text">Филиал</p></td>
+            <td class="main-table__cell"><p class="main-table__text">Должность</p></td>
+        </tr>
+
+            <tr class="main-table__row">
+                <td class="main-table__cell"><p class="main-table__text">@Model.BirthDay.ToString("MM.dd.yyyy")</p></td>
+                <td class="main-table__cell"><p class="main-table__text">@Model.Branch</p></td>
+                <td class="main-table__cell"><p class="main-table__text">@Model.Position</p></td>
+            </tr>
+    </table>
+</div>

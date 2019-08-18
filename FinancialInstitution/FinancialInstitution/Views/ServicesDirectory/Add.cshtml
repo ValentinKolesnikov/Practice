@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/MainLayout.cshtml";
+}
+@model FinancialInstitution.Models.ServicesDirectory
+
+    <div class="action-form">
+        <h3 class="action-form__title">Форма добавления услуги</h3>
+
+        @using (Html.BeginForm("Add", "ServicesDirectory", FormMethod.Post))
+        {
+            @Html.TextBox("Name", "", new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.Name) })
+            @Html.ValidationMessageFor(model => model.Name)
+            
+            <div class="action-form__buttons">
+                <a class="action-form__btn btn-cansel" href="/ServicesDirectory/show">Отмена</a>
+                <input class="action-form__btn btn-save" type="submit" name="name" value="Сохранить" />
+            </div>
+        }
+
+    </div>
+

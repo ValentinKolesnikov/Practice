@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e028fd3ae0fd4cef991fd84b7b599e45" Name="Diagram1">
+        <EntityTypeShape EntityType="FinancialInstitutionModel.Branch" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinancialInstitutionModel.Client" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinancialInstitutionModel.Employee" Width="1.5" PointX="3" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinancialInstitutionModel.Position" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinancialInstitutionModel.ServicesDirectory" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FinancialInstitutionModel.ServicesHistory" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="FinancialInstitutionModel.FK__Employee__Branch__1CF15040" ManuallyRouted="false" />
+        <AssociationConnector Association="FinancialInstitutionModel.FK__ServicesH__Clien__20C1E124" ManuallyRouted="false" />
+        <AssociationConnector Association="FinancialInstitutionModel.FK__Employee__Positi__1DE57479" ManuallyRouted="false" />
+        <AssociationConnector Association="FinancialInstitutionModel.FK__ServicesH__Emplo__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="FinancialInstitutionModel.FK__ServicesH__Servi__1FCDBCEB" ManuallyRouted="false" />
+        <AssociationConnector Association="FinancialInstitutionModel.BranchService" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = "~/Views/MainLayout.cshtml";
+}
+
+<div class="main-content">
+    <table class="main-table">
+        <caption>
+            <h3 class="table__title">Список клиентов</h3>
+            <a class="btn__add" href="/Client/Add/"><i class="fas fa-plus"></i> Добавить</a>
+        </caption>
+        <tr class="main-table__row main-table__row-title">
+            <td class="main-table__cell"><p class="main-table__text">ФИО</p></td>
+            <td class="main-table__cell"><p class="main-table__text">Дата рождения</p></td>
+            <td class="main-table__cell"><p class="main-table__text">Паспорт</p></td>
+            <td class="main-table__cell"><p class="main-table__text">Номер карты</p></td>
+            <td class="main-table__cell"><p class="main-table__text"></p></td>
+        </tr>
+
+        @foreach (FinancialInstitution.Models.Client c in Model)
+        {
+            <tr class="main-table__row">
+                <td class="main-table__cell"><p class="main-table__text"><a href="/client/showall/@c.Id">@c.SecondName @c.FirstName @c.MiddleName</a></p></td>
+                <td class="main-table__cell"><p class="main-table__text">@c.BirthDay.Day.@c.BirthDay.Month.@c.BirthDay.Year</p></td>
+                <td class="main-table__cell"><p class="main-table__text">@c.PassportSeriesAndNumber</p></td>
+                <td class="main-table__cell"><p class="main-table__text">@c.CardNumber</p></td>
+                <td class="main-table__cell">
+                    <a class="main-table__link btn__edit btn" href="/Client/Edit/@c.Id"><i class="fas fa-edit"></i></a>
+                    <a class="main-table__link btn__delete btn" href="/Client/Delete/@c.Id"><i class="fas fa-trash-alt"></i></a>
+<<<<<<< HEAD
+                    <a class="main-table__link btn__show btn" href="/ServicesHistory/show/@c.Id/"><i class="far fa-list-alt"></i></a>
+=======
+                    <a class="main-table__link btn__show btn" href="/serviceshistory/show/@c.Id/"><i class="far fa-list-alt"></i></a>
+>>>>>>> c16a53b84ebce4a0d445ed9aec903ef847ed4883
+                </td>
+            </tr>
+        }
+    </table>
+</div>

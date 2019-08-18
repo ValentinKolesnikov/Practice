@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using FinancialInstitution.Models;
+using DataAccessLayerCommon;
+<<<<<<< HEAD
+
+=======
+>>>>>>> 2ec41096a6a24c9e46be725e07b655f2f8a89b8a
+namespace FinancialInstitution.Mappers
+{
+    public class ClientMapper
+    {
+        public Models.Client MapFromEntity(DataAccessLayerCommon.Client client)
+        {
+
+            Models.Client tempClient = new Models.Client
+            {
+<<<<<<< HEAD
+                Id = client.Id,
+=======
+                FirstName = client.FirstName,
+                SecondName = client.SecondName,
+                MiddleName = client.MiddleName,
+                BirthDay = client.BirthDay,
+                Address = client.Address,
+                PassportSeriesAndNumber = client.PassportSeriesAndNumber,
+                CardNumber = client.CardNumber
+            };
+
+            return tempClient;
+
+        }
+        public DataAccessLayerCommon.Client MapFromModel(Models.Client client)
+        {
+
+            DataAccessLayerCommon.Client tempClient = new DataAccessLayerCommon.Client
+            {
+>>>>>>> 2ec41096a6a24c9e46be725e07b655f2f8a89b8a
+                FirstName = client.FirstName,
+                SecondName = client.SecondName,
+                MiddleName = client.MiddleName,
+                BirthDay = client.BirthDay,
+                Address = client.Address,
+                PassportSeriesAndNumber = client.PassportSeriesAndNumber,
+                CardNumber = client.CardNumber
+            };
+
+            return tempClient;
+
+        }
+    }
+}

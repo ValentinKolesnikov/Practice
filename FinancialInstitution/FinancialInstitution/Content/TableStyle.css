@@ -1,0 +1,74 @@
+﻿.btn {
+  padding: 5px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.btn__edit {
+  border: 1px solid #878E95;
+  color: #878E95;
+}
+
+.btn__delete {
+  border: 1px solid #E04E5C;
+  color: #E04E5C;
+}
+
+.btn__show {
+  border: 1px solid #333333;
+  color: #333333;
+  margin-left: 9px;
+}
+
+.btn__add {
+  padding: 10px;
+  background-color: #28A745;
+  color: #fff;
+  font-size: 1.6rem;
+  position: absolute;
+  right: 0;
+  top: 20px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.main-table {
+  width: 80%;
+  border-collapse: collapse;
+  font-size: 1.5rem;
+  border: 2px solid #fff;
+  position: relative;
+}
+
+.main-table caption {
+  margin: 20px 0;
+  font-size: 2rem;
+}
+
+.main-table__row {
+  border: 1px solid #808080;
+}
+
+.main-table__cell {
+  padding: 5px 15px;
+  text-align: center;
+  border: 1px solid #808080;
+}
+
+.main-table__row-title {
+  background-color: #B8CCE4 !important;
+  font-weight: bold;
+}
+
+.main-content {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}

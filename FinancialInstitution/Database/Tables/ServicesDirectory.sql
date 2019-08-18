@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[ServicesDirectory]
+(
+	[Id] INT PRIMARY KEY IDENTITY,
+	Name NVARCHAR(50) NOT NULL
+)

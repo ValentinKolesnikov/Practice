@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Views/MainLayout.cshtml"; ;
+}
+@model FinancialInstitution.Models.Branch
+<div class="action-form">
+    <h3 class="action-form__title">Форма редактирования филиала</h3>
+    
+
+    @using (Html.BeginForm("/Edit/" + @Model.Id, "Branch", FormMethod.Post))
+    {
+        @Html.TextBox("Name", @Model.Name, new { @class = "action-form__input" })
+        @Html.ValidationMessageFor(model => model.Name)
+
+        @Html.DropDownList("Country", new SelectList(new string[1] { @Model.Country }), "Страна", new { @class = "action-form__select", @onchange = "countrySelected()", @id = "country" })
+        @Html.ValidationMessageFor(model => model.Country)
+
+        @Html.DropDownList("City", new SelectList(new string[1] { @Model.City }), "Город", new { @class = "action-form__select", @id = "city" })
+        @Html.ValidationMessageFor(model => model.City)
+
+        @Html.TextBox("Street", @Model.Street, new { @class = "action-form__input" })
+        @Html.ValidationMessageFor(model => model.Street)
+        <div class="action-form__buttons">
+            <a class="action-form__btn btn-cansel" href="/branch/showall">Отмена</a>
+            <input class="action-form__btn btn-save" type="submit" name="name" value="Сохранить" />
+        </div>
+    }
+</div>
+<script src="~/scripts/cascadeList.js"></script>
+

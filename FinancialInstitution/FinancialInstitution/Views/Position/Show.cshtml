@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/MainLayout.cshtml";
+}
+
+@model IEnumerable<FinancialInstitution.Models.Position>
+    <div class="main-content">
+        <table class="main-table">
+            <caption>
+                <h3 class="table__title">Список должностей</h3>
+                <a class="btn__add" href="/position/add/"><i class="fas fa-plus"></i> Добавить</a>
+            </caption>
+            <tr class="main-table__row main-table__row-title">
+                <td class="main-table__cell"><p class="main-table__text">Наименование</p></td>
+                <td class="main-table__cell"><p class="main-table__text"></p></td>
+            </tr>
+            @foreach (FinancialInstitution.Models.Position c in Model)
+            {
+
+                <tr class="main-table__row">
+                    <td class="main-table__cell"><p class="main-table__text">@c.Name</p></td>
+                    <td class="main-table__cell">
+                        <a class="main-table__link btn__edit btn" href="/position/edit/@c.Id"><i class="fas fa-edit"></i></a>
+                        <a class="main-table__link btn__delete btn" href="/position/delete/@c.Id"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>

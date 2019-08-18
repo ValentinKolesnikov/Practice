@@ -1,0 +1,40 @@
+﻿
+
+@{
+    Layout = "~/Views/MainLayout.cshtml";
+}
+
+@model IEnumerable<FinancialInstitution.Models.Branch>
+    <div class="main-content">
+
+        <table class="main-table">
+            <caption>
+                <h3 class="table__title">Список филиалов</h3>
+                <a class="btn__add" href="/Branch/Add/"><i class="fas fa-plus"></i> Добавить</a>
+            </caption>
+            <tr class="main-table__row main-table__row-title">
+                <td class="main-table__cell"><p class="main-table__text">Наименование</p></td>
+                <td class="main-table__cell"><p class="main-table__text">Страна</p></td>
+                <td class="main-table__cell"><p class="main-table__text">Город</p></td>
+                <td class="main-table__cell"><p class="main-table__text">Улица</p></td>
+                <td class="main-table__cell"><p class="main-table__text"></p></td>
+
+            </tr>
+            @foreach (FinancialInstitution.Models.Branch b in Model)
+            {
+
+                <tr class="main-table__row">
+                    <td class="main-table__cell"><p class="main-table__text">@b.Name</p></td>
+                    <td class="main-table__cell"><p class="main-table__text">@b.Country</p></td>
+                    <td class="main-table__cell"><p class="main-table__text">@b.City</p></td>
+                    <td class="main-table__cell"><p class="main-table__text">@b.Street</p></td>
+                    <td class="main-table__cell">
+                        <a class="main-table__link btn__edit btn" href="/Branch/Edit/@b.Id"><i class="fas fa-edit"></i></a>
+                        <a class="main-table__link btn__delete btn" href="/Branch/Delete/@b.Id"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+

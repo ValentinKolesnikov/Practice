@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "~/Views/MainLayout.cshtml";
+}
+@model FinancialInstitution.Models.Employee
+
+<div class="action-form">
+    <h3 class="action-form__title">Форма редактирования сотрудника</h3>
+    @using (Html.BeginForm("/Edit/" + @Model.Id, "employee", FormMethod.Post))
+    {
+        @Html.TextBox("FirstName", @Model.FirstName, new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.FirstName) })
+        @Html.ValidationMessageFor(model => model.FirstName)
+
+        @Html.TextBox("SecondName", @Model.SecondName, new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.SecondName) })
+        @Html.ValidationMessageFor(model => model.SecondName)
+
+        @Html.TextBox("MiddleName", @Model.MiddleName, new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.MiddleName) })
+        @Html.ValidationMessageFor(model => model.MiddleName)
+
+        @Html.TextBox("BirthDay", @Model.BirthDay, new { @class = "action-form__input birthDay-datepicker", @placeholder = Html.DisplayNameFor(m => m.BirthDay) })
+        @Html.ValidationMessageFor(model => model.BirthDay)
+
+        @Html.DropDownList("PositionId", (IEnumerable<SelectListItem>)ViewBag.positions, "Список должностей", new { @class = "action-form__select" })
+        @Html.ValidationMessageFor(model => model.PositionId)
+
+        @Html.DropDownList("BranchId", (IEnumerable<SelectListItem>)ViewBag.branches, "Список филиалов", new { @class = "action-form__select" })
+        @Html.ValidationMessageFor(model => model.BranchId)
+
+        <div class="action-form__buttons">
+            <a class="action-form__btn btn-cansel" href="/employee/show">Отмена</a>
+            <input class="action-form__btn btn-save" type="submit" name="name" value="Сохранить" />
+        </div>
+    }
+</div>
+

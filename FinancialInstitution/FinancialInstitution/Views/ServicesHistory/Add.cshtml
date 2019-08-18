@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/MainLayout.cshtml"; ;
+ }
+@model FinancialInstitution.Models.ServicesHistoryEdit
+
+    <div class="action-form">
+        <h3 class="action-form__title">Форма регистрации услуги</h3>
+        @using (Html.BeginForm("/Add/"+@Model.ClientId, "ServicesHistory", FormMethod.Post))
+        {
+            <p>@Model.FirstName @Model.SecondName @Model.MiddleName</p>
+            @Html.DropDownList("BranchId", (IEnumerable<SelectListItem>)ViewBag.branches, "Список филиалов", new { @class = "action-form__select" , @id = "branchList", @onchange = "Undisable()" })
+            @Html.ValidationMessageFor(model => model.BranchId)
+
+            @Html.DropDownList("EmployeeId", new List<SelectListItem>(), "Список сотрудников", new { @class = "action-form__select", @id = "employeeList", @disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.EmployeeId)
+
+            @Html.DropDownList("ServicesDirectoryId", new List<SelectListItem>(), "Список услуг", new { @class = "action-form__select", @id = "servicesDirectoryList", @disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.ServicesDirectoryId)
+
+            <div class="action-form__buttons">
+                <a class="action-form__btn btn-cansel" href="/ServicesHistory/show/@Model.ClientId">Отмена</a>
+                <input class="action-form__btn btn-save" type="submit" name="name" value="Сохранить" />
+            </div>
+        }        
+    </div>
+
+<script src="~/scripts/disable.js"> </script>

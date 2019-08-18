@@ -1,0 +1,65 @@
+﻿using DataAccessLayerCommon.Interfaces;
+using System.Collections.Generic;
+using DataAccessLayerCommon;
+using FinancialInstitution.Mappers;
+using System.Web.Mvc;
+
+namespace FinancialInstitution.Controllers
+{
+    public class EmployeeController : Controller
+    {
+<<<<<<< HEAD
+        private IEmployeeRepository employeeRepository { get; set; }
+        private EmployeeMapper employeeMapper;
+
+=======
+        private IEmployeeRepository employeeRepository {get; set;}
+        private EmployeeMapper employeeMapper;
+         
+>>>>>>> 2ec41096a6a24c9e46be725e07b655f2f8a89b8a
+        public EmployeeController(IEmployeeRepository employeeRepository)
+        {
+            this.employeeRepository = new DataAccessLayerEF.Repositories.EmployeeRepository();
+            employeeMapper = new EmployeeMapper();
+        }
+
+        public ActionResult Show()
+        {
+            IEnumerable<Employee> f = employeeRepository.GetListWithBranchAndPosition();
+            return View(employeeMapper.MapFromList(f));
+        }
+
+        [HttpGet]
+        public string Delete(int id)
+        {
+            employeeRepository.Delete(id);
+            return "Removed";
+        }
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Add(Employee employee)
+        {
+            employeeRepository.Insert(employee);
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            return View(employeeRepository.GetItemWithBranchAndPosition(id));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Employee employee, int id)
+        {
+            employeeRepository.Update(id, employee);
+            return View(employee);
+        }
+    }
+}

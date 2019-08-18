@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/TableStyle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/FormStyle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Main.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Header.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/DatePicker/datepicker.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/f11b57d7ad.js"></script>
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/DatePicker/datepicker.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+    
+</head>
+<body>
+    <header class="main-header">
+        <div class="main-header__logo"></div>
+        <div class="main-header__menu">
+            <ul>
+                <li class="main-header__item"><a href="/client/showshort" class="main-header__link">Клиенты</a></li>
+                <li class="main-header__item"><a href="/employee/show" class="main-header__link">Сотрудники</a></li>
+                <li class="main-header__item"><a href="/branch/showall" class="main-header__link">Филиалы</a></li>
+                <li class="main-header__item"><a href="/position/show" class="main-header__link">Должности</a></li>
+                <li class="main-header__item"><a href="/servicesdirectory/show" class="main-header__link">Услуги</a></li>
+            </ul>
+        </div>
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <script src="~/scripts/main.js"></script>
+    <script src="~/scripts/cascadeList.js"></script>
+    @*<script src="~/scripts/disable.js"> </script>*@
+
+</body>
+</html>

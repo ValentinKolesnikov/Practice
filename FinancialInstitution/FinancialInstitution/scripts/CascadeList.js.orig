@@ -1,0 +1,69 @@
+﻿countries_dictionary = {
+    "США":["Нью-Йорк", "Сан-Франциско", "Лос-Анджелес"],
+    "Беларусь": ["Могилев", "Минск", "Витебск"],
+    "Россия": ["Вологда", "Москва", "Санкт-Петербург"],
+    "Украина": ["Киев", "Львов", "Одесса"]
+};
+var countryList = document.getElementById('country');
+var cityList = document.getElementById('city');
+
+<<<<<<< HEAD
+window.onload = function () {
+
+    if (countryList == null)
+        return;
+    countryList.options[0].setAttribute("disabled", true);
+    countryList.options[0].setAttribute("selected", true);
+    cityList.setAttribute("disabled", null);
+=======
+
+window.onload = function(){
+
+    if (countryList == null)
+        return;
+>>>>>>> 6cad2e28f319252ea6c34c46bb6cbcc94f0d8c81
+
+    if (countryList.options.length===1)
+        countryList.options[0].setAttribute("selected", null);
+
+<<<<<<< HEAD
+    for (var key in countries_dictionary) {
+
+        console.log(key !== countryList.options[countryList.selectedIndex].value);
+
+        if (key !== countryList.options[countryList.selectedIndex].value) {
+            countryList.innerHTML += "<option>" + key + "</option>";
+            console.log(countryList.options[countryList.selectedIndex].value);
+            console.log(key);
+        }
+            
+    }
+=======
+    countryList.options[0].setAttribute("disabled", null);
+
+    for (var key in countries_dictionary) 
+        if (key != countryList.options[countryList.selectedIndex].value)
+            countryList.innerHTML += "<option>" + key + "</option>";
+
+    var selected = countryList.options[countryList.selectedIndex].value;
+
+    for (var key in countries_dictionary[selected])
+        if (countries_dictionary[selected][key] != cityList.options[cityList.selectedIndex].value)
+            cityList.innerHTML += "<option>" + countries_dictionary[selected][key] + "</option>";
+>>>>>>> 6cad2e28f319252ea6c34c46bb6cbcc94f0d8c81
+}
+
+function countrySelected() {
+    if (cityList == null)
+        return;
+    cityList.innerHTML = "<option>Город</option>";
+
+    var selected = countryList.options[countryList.selectedIndex].value;
+    cityList.options[0].setAttribute("disabled", null);
+    cityList.options[0].setAttribute("selected", null);
+    cityList.removeAttribute("disabled");
+
+    for (var key in countries_dictionary[selected]) {
+        cityList.innerHTML += "<option>" + countries_dictionary[selected][key] + "</option>";
+    }
+}

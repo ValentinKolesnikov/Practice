@@ -1,0 +1,67 @@
+﻿using System.Collections.Generic;
+
+namespace FinancialInstitution.Mappers
+{
+<<<<<<< HEAD
+   public class EmployeeMapper
+   {
+       public EmployeeMapper(){}
+
+
+       public Models.Employee MapFromItem(DataAccessLayerCommon.Employee employee)
+       {
+           return new Models.Employee()
+           {
+               Id = employee.Id,
+               FullName = $"{employee.FirstName} {employee.SecondName} {employee.MiddleName}",
+               Branch = employee.Branch.Name,
+               Position = employee.Position.Name
+           };
+       }
+
+       public IEnumerable<Models.Employee> MapFromList(IEnumerable<DataAccessLayerCommon.Employee> employees)
+       {
+           List<Models.Employee> employeesReturn = new List<Models.Employee>();
+           foreach (DataAccessLayerCommon.Employee employee in employees)
+               employeesReturn.Add(new Models.Employee()
+               {
+                   Id = employee.Id,
+                   FullName = $"{employee.FirstName} {employee.SecondName} {employee.MiddleName}",
+                   Branch = employee.Branch.Name,
+                   Position = employee.Position.Name
+               });
+           return employeesReturn;
+       }
+   }
+=======
+    public class EmployeeMapper
+    {
+        public EmployeeMapper(){}
+
+        public Models.Employee MapFromItem(DataAccessLayerCommon.Employee employee)
+        {
+            return new Models.Employee()
+            {
+                Id = employee.Id,
+                FullName = $"{employee.FirstName} {employee.SecondName} {employee.MiddleName}",
+                Branch = employee.Branch.Name,
+                Position = employee.Position.Name
+            };
+        }
+
+        public IEnumerable<Models.Employee> MapFromList(IEnumerable<DataAccessLayerCommon.Employee> employees)
+        {
+            List<Models.Employee> employeesReturn = new List<Models.Employee>();
+            foreach (DataAccessLayerCommon.Employee employee in employees)
+                employeesReturn.Add(new Models.Employee()
+                {
+                    Id = employee.Id,
+                    FullName = $"{employee.FirstName} {employee.SecondName} {employee.MiddleName}",
+                    Branch = employee.Branch.Name,
+                    Position = employee.Position.Name
+                });
+            return employeesReturn; 
+        }
+    }
+>>>>>>> 2ec41096a6a24c9e46be725e07b655f2f8a89b8a
+}

@@ -1,0 +1,474 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище FinancialInstitutionModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "FinancialInstitution.dbo.BranchService" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="BranchService">
+          <Key>
+            <PropertyRef Name="BranchId" />
+            <PropertyRef Name="ServicesDirectoryId" />
+          </Key>
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="ServicesDirectoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDay" Type="date" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PassportSeriesAndNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SecondName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirthDay" Type="date" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Flag" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServicesDirectory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServicesHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="ServicesDirectoryId" Type="int" Nullable="false" />
+          <Property Name="ClientId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BranchSer__Branc__1B0907CE">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="BranchService" Type="Self.BranchService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BranchService">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BranchSer__Servi__1BFD2C07">
+          <End Role="ServicesDirectory" Type="Self.ServicesDirectory" Multiplicity="1" />
+          <End Role="BranchService" Type="Self.BranchService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServicesDirectory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BranchService">
+              <PropertyRef Name="ServicesDirectoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Branch__1CF15040">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Positi__1DE57479">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServicesH__Clien__20C1E124">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="ServicesHistory" Type="Self.ServicesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServicesHistory">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServicesH__Emplo__1ED998B2">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ServicesHistory" Type="Self.ServicesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServicesHistory">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServicesH__Servi__1FCDBCEB">
+          <End Role="ServicesDirectory" Type="Self.ServicesDirectory" Multiplicity="1" />
+          <End Role="ServicesHistory" Type="Self.ServicesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServicesDirectory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServicesHistory">
+              <PropertyRef Name="ServicesDirectoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище FinancialInstitutionModelContainer">
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicesDirectory" EntityType="Self.ServicesDirectory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicesHistory" EntityType="Self.ServicesHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchService" EntityType="Self.BranchService" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BranchService].[BranchId] AS [BranchId], 
+    [BranchService].[ServicesDirectoryId] AS [ServicesDirectoryId]
+    FROM [dbo].[BranchService] AS [BranchService]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__BranchSer__Branc__1B0907CE" Association="Self.FK__BranchSer__Branc__1B0907CE">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="BranchService" EntitySet="BranchService" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BranchSer__Servi__1BFD2C07" Association="Self.FK__BranchSer__Servi__1BFD2C07">
+            <End Role="ServicesDirectory" EntitySet="ServicesDirectory" />
+            <End Role="BranchService" EntitySet="BranchService" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Branch__1CF15040" Association="Self.FK__Employee__Branch__1CF15040">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Positi__1DE57479" Association="Self.FK__Employee__Positi__1DE57479">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Employee" EntitySet="Employee" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServicesH__Clien__20C1E124" Association="Self.FK__ServicesH__Clien__20C1E124">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="ServicesHistory" EntitySet="ServicesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServicesH__Emplo__1ED998B2" Association="Self.FK__ServicesH__Emplo__1ED998B2">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ServicesHistory" EntitySet="ServicesHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServicesH__Servi__1FCDBCEB" Association="Self.FK__ServicesH__Servi__1FCDBCEB">
+            <End Role="ServicesDirectory" EntitySet="ServicesDirectory" />
+            <End Role="ServicesHistory" EntitySet="ServicesHistory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FinancialInstitutionModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Branch__1CF15040" FromRole="Branch" ToRole="Employee" />
+          <NavigationProperty Name="ServicesDirectories" Relationship="Self.BranchService" FromRole="Branch" ToRole="ServicesDirectory" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassportSeriesAndNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ServicesHistories" Relationship="Self.FK__ServicesH__Clien__20C1E124" FromRole="Client" ToRole="ServicesHistory" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SecondName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Branch" Relationship="Self.FK__Employee__Branch__1CF15040" FromRole="Employee" ToRole="Branch" />
+          <NavigationProperty Name="Position" Relationship="Self.FK__Employee__Positi__1DE57479" FromRole="Employee" ToRole="Position" />
+          <NavigationProperty Name="ServicesHistories" Relationship="Self.FK__ServicesH__Emplo__1ED998B2" FromRole="Employee" ToRole="ServicesHistory" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Flag" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK__Employee__Positi__1DE57479" FromRole="Position" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="ServicesDirectory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ServicesHistories" Relationship="Self.FK__ServicesH__Servi__1FCDBCEB" FromRole="ServicesDirectory" ToRole="ServicesHistory" />
+          <NavigationProperty Name="Branches" Relationship="Self.BranchService" FromRole="ServicesDirectory" ToRole="Branch" />
+        </EntityType>
+        <EntityType Name="ServicesHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="ServicesDirectoryId" Type="Int32" Nullable="false" />
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Client" Relationship="Self.FK__ServicesH__Clien__20C1E124" FromRole="ServicesHistory" ToRole="Client" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__ServicesH__Emplo__1ED998B2" FromRole="ServicesHistory" ToRole="Employee" />
+          <NavigationProperty Name="ServicesDirectory" Relationship="Self.FK__ServicesH__Servi__1FCDBCEB" FromRole="ServicesHistory" ToRole="ServicesDirectory" />
+        </EntityType>
+        <Association Name="FK__Employee__Branch__1CF15040">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServicesH__Clien__20C1E124">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="ServicesHistory" Type="Self.ServicesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServicesHistory">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Employee__Positi__1DE57479">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employee">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServicesH__Emplo__1ED998B2">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
+          <End Role="ServicesHistory" Type="Self.ServicesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServicesHistory">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServicesH__Servi__1FCDBCEB">
+          <End Role="ServicesDirectory" Type="Self.ServicesDirectory" Multiplicity="1" />
+          <End Role="ServicesHistory" Type="Self.ServicesHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServicesDirectory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServicesHistory">
+              <PropertyRef Name="ServicesDirectoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="BranchService">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="*" />
+          <End Role="ServicesDirectory" Type="Self.ServicesDirectory" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="FinancialInstitutionEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <EntitySet Name="ServicesDirectories" EntityType="Self.ServicesDirectory" />
+          <EntitySet Name="ServicesHistories" EntityType="Self.ServicesHistory" />
+          <AssociationSet Name="FK__Employee__Branch__1CF15040" Association="Self.FK__Employee__Branch__1CF15040">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServicesH__Clien__20C1E124" Association="Self.FK__ServicesH__Clien__20C1E124">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="ServicesHistory" EntitySet="ServicesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Employee__Positi__1DE57479" Association="Self.FK__Employee__Positi__1DE57479">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="Employee" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServicesH__Emplo__1ED998B2" Association="Self.FK__ServicesH__Emplo__1ED998B2">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="ServicesHistory" EntitySet="ServicesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServicesH__Servi__1FCDBCEB" Association="Self.FK__ServicesH__Servi__1FCDBCEB">
+            <End Role="ServicesDirectory" EntitySet="ServicesDirectories" />
+            <End Role="ServicesHistory" EntitySet="ServicesHistories" />
+          </AssociationSet>
+          <AssociationSet Name="BranchService" Association="Self.BranchService">
+            <End Role="Branch" EntitySet="Branches" />
+            <End Role="ServicesDirectory" EntitySet="ServicesDirectories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище FinancialInstitutionModelContainer" CdmEntityContainer="FinancialInstitutionEntities">
+          <EntitySetMapping Name="Branches">
+            <EntityTypeMapping TypeName="FinancialInstitutionModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="FinancialInstitutionModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PassportSeriesAndNumber" ColumnName="PassportSeriesAndNumber" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="FinancialInstitutionModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="FinancialInstitutionModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicesDirectories">
+            <EntityTypeMapping TypeName="FinancialInstitutionModel.ServicesDirectory">
+              <MappingFragment StoreEntitySet="ServicesDirectory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicesHistories">
+            <EntityTypeMapping TypeName="FinancialInstitutionModel.ServicesHistory">
+              <MappingFragment StoreEntitySet="ServicesHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="ServicesDirectoryId" ColumnName="ServicesDirectoryId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="BranchService" TypeName="FinancialInstitutionModel.BranchService" StoreEntitySet="BranchService">
+            <EndProperty Name="Branch">
+              <ScalarProperty Name="Id" ColumnName="BranchId" />
+            </EndProperty>
+            <EndProperty Name="ServicesDirectory">
+              <ScalarProperty Name="Id" ColumnName="ServicesDirectoryId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

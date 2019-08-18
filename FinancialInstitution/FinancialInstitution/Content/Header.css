@@ -1,0 +1,23 @@
+﻿.main-header {
+  padding: 0 5%;
+  height: 40px;
+  background-color: #333333;
+  color: #fff;
+}
+
+.main-header__link {
+  color: #ffffff;
+  font-weight: lighter;
+  font-size: 1.4rem
+}
+
+.main-header__menu ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 40px;
+}
+
+.main-header__item {
+  margin-right: 3rem;
+}

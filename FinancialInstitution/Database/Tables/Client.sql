@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[Client]
+(
+	[Id] INT PRIMARY KEY IDENTITY,
+	FirstName NVARCHAR(50) NOT NULL,
+	SecondName NVARCHAR(50) NOT NULL,
+	MiddleName NVARCHAR(50) NOT NULL,
+	BirthDay DATE NOT NULL,
+	Address NVARCHAR(50) NOT NULL,
+	PassportSeriesAndNumber NVARCHAR(50) NOT NULL,
+	CardNumber NVARCHAR(50) NULL
+)

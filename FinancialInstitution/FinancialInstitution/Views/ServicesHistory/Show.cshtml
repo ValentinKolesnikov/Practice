@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/MainLayout.cshtml"; ;
+}
+@model IEnumerable<FinancialInstitution.Models.ServicesHistoryShow>
+
+
+    <div class="main-content">
+
+        <table class="main-table">
+            <caption>
+                <h3 class="table__title">История услуг</h3>
+                <p>@TempData["FullName"]</p>
+                <a class="btn__add" href="/serviceshistory/Add/@TempData["CurrentClientId"]"><i class="fas fa-plus"></i> Добавить</a>
+            </caption>
+            <tr class="main-table__row main-table__row-title">
+                <td class="main-table__cell"><p class="main-table__text">Уcлуга</p></td>
+                <td class="main-table__cell"><p class="main-table__text">Дата</p></td>
+                <td class="main-table__cell"><p class="main-table__text">Время</p></td>
+                <td class="main-table__cell"><p class="main-table__text">Филлиал</p></td>
+                <td class="main-table__cell"><p class="main-table__text">Сотрудник</p></td>
+                <td class="main-table__cell"><p class="main-table__text"></p></td>
+
+            </tr>
+          @foreach(FinancialInstitution.Models.ServicesHistoryShow sh in Model)
+            {
+
+                <tr class="main-table__row">
+                    <td class="main-table__cell"><p class="main-table__text">@sh.ServicesDirectoryName</p></td>
+                    <td class="main-table__cell"><p class="main-table__text">@sh.Date.Day.@sh.Date.Month.@sh.Date.Year</p></td>
+                    <td class="main-table__cell"><p class="main-table__text">@sh.Date.Hour:@sh.Date.Minute</p></td>
+                    <td class="main-table__cell"><p class="main-table__text">@sh.Employee.Branch</p></td>
+                    <td class="main-table__cell"><p class="main-table__text">@sh.Employee.SecondName @sh.Employee.FirstName[0]. @sh.Employee.MiddleName[0].</p></td>
+             
+                    <td class="main-table__cell">
+                        <a class="main-table__link btn__edit btn" href="/ServicesHistory/Edit/@sh.Id"><i class="fas fa-edit"></i></a>
+                        <a class="main-table__link btn__delete btn" href="/ServicesHistory/Delete/@sh.Id"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>

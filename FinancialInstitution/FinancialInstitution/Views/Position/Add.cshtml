@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/MainLayout.cshtml";
+}
+@model FinancialInstitution.Models.Position
+<div class="action-form">
+    <h3 class="action-form__title">Форма добавления должности</h3>
+    @using (Html.BeginForm("add", "position", FormMethod.Post))
+    {
+        @Html.TextBox("Name", "", new { @class = "action-form__input", @placeholder = Html.DisplayNameFor(m => m.Name) })
+        @Html.ValidationMessageFor(model => model.Name)
+
+        <div>
+            @Html.EditorFor(x => x.Flag, new { @class = "action-form__input" })
+            <label for="Flag" style="margin:0">@Html.DisplayNameFor(m => m.Flag)</label>
+        </div>
+        <div class="action-form__buttons">
+            <a class="action-form__btn btn-cansel" href="/position/show">Отмена</a>
+            <input class="action-form__btn btn-save" type="submit" name="name" value="Сохранить" />
+        </div>
+    }
+</div>

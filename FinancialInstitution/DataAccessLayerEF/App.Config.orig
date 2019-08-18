@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="entityFramework" type="System.Data.Entity.Internal.ConfigFile.EntityFrameworkSection, EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    <!-- For more information on Entity Framework configuration, visit http://go.microsoft.com/fwlink/?LinkID=237468 -->
+  </configSections>
+  <connectionStrings>
+ 
+<<<<<<< HEAD
+  <add name="FinancialInstitutionEntities" connectionString="metadata=res://*/FinancialInstitution.csdl|res://*/FinancialInstitution.ssdl|res://*/FinancialInstitution.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=VKALESNIKOV;initial catalog=FinancialInstitution;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />  </connectionStrings>  <entityFramework>
+=======
+  <add name="FinancialInstitutionEntities" connectionString="metadata=res://*/FinancialInstitution.csdl|res://*/FinancialInstitution.ssdl|res://*/FinancialInstitution.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=OFEDOSEEV;initial catalog=FinancialInstitution;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework&quot;" providerName="System.Data.EntityClient" />  </connectionStrings>  <entityFramework>
+>>>>>>> 96e6d203930061aa4f0a1664b1aacf5c8e4b2b40
+    <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
+      <parameters>
+        <parameter value="mssqllocaldb" />
+      </parameters>
+    </defaultConnectionFactory>
+    <providers>
+      <provider invariantName="System.Data.SqlClient" type="System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer" />
+    </providers>
+  </entityFramework>
+</configuration>

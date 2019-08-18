@@ -1,0 +1,86 @@
+﻿using DataAccessLayerCommon;
+
+using DataAccessLayerCommon.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using FinancialInstitution.Mappers;
+
+namespace FinancialInstitution.Controllers
+{
+    public class ClientController : Controller
+    {
+        private IClientRepository clientRepository { get; set; }
+        private ClientMapper clientMapper { get; set; }
+
+        public ClientController(IClientRepository clientRepository)
+        {
+            this.clientRepository = clientRepository;
+            clientMapper = new ClientMapper();
+        }
+        public ActionResult ShowAll()
+        {
+            IEnumerable<Client> clients = clientRepository.GetAll();
+            List<Models.Client> clientModels = new List<Models.Client>();
+            foreach (Client c in clients)
+            {
+                Models.Client tempClient = clientMapper.MapFromEntity(c);
+                clientModels.Add(tempClient);
+            }
+            return View(clientModels);
+        }
+
+
+
+        [HttpGet]
+        public string Delete(int id)
+        {
+            clientRepository.Delete(id);
+
+            return "Removed";
+        }
+
+
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Add(Models.Client client)
+        {
+            DataAccessLayerCommon.Client Client = clientMapper.MapFromModel(client);
+            clientRepository.Insert(Client);
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+<<<<<<< HEAD
+            DataAccessLayerCommon.Client clientFromCommon = clientRepository.GetItem(id);
+            Models.Client client = clientMapper.MapFromEntity(clientFromCommon);
+
+            return View(client);
+=======
+            ViewBag.Client = clientRepository.GetItem(id);
+            return View();
+>>>>>>> bd16ee0ef0167e84a2baf7a44abdceb9ade6f3f0
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Models.Client client, int id)
+        {
+            DataAccessLayerCommon.Client Client = clientMapper.MapFromModel(client);
+            clientRepository.Update(id, Client);
+            
+            
+            return View(client);
+        }
+
+    }
+}
